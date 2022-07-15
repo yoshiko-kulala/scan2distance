@@ -85,6 +85,7 @@ def scan_callback(msg):
 			
     
     print(range_ahead)
+    print(range_back)
 
     if range_right>0:
         pub1.publish(range_right)
