@@ -4,14 +4,13 @@ import rospy
 import math
 from sensor_msgs.msg import LaserScan
 from std_msgs.msg import Float32
-range_left = -1
-range_right = -1
-range_back=-1
-range_ahead=-1
-range_front = -1
-# range_kago=-1
 
 def scan_callback(msg):
+    range_left = -1
+    range_right = -1
+    range_back=-1
+    range_ahead=-1
+    range_front = -1
     #len(msg.ranges) is 720
     if msg.ranges[270*2]>0:
         range_left = msg.ranges[270*2]
