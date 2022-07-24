@@ -9,7 +9,7 @@ range_right = -1
 range_back=-1
 range_ahead=-1
 range_front = -1
-range_kago=-1
+# range_kago=-1
 
 def scan_callback(msg):
     #len(msg.ranges) is 720
@@ -119,29 +119,29 @@ def scan_callback(msg):
     if front_cou!=0:
         range_front = (range_front1 + range_front2 + range_front3 + range_front4 + range_front5 + range_front6 + range_front7)/front_cou
 
-    list_kago = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    # list_kago = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 
-    list_kago.insert(0, msg.ranges[(0)])
-    list_kago.insert(1, msg.ranges[(1*2)]*math.cos(math.radians(1)))
-    list_kago.insert(2, msg.ranges[(2*2)]*math.cos(math.radians(2)))
-    list_kago.insert(3, msg.ranges[(3*2)]*math.cos(math.radians(3)))
-    list_kago.insert(4, msg.ranges[(4*2)]*math.cos(math.radians(4)))
-    list_kago.insert(5, msg.ranges[(5*2)]*math.cos(math.radians(5)))
-    list_kago.insert(6, msg.ranges[(6*2)]*math.cos(math.radians(6)))
-    list_kago.insert(7, msg.ranges[(7*2)]*math.cos(math.radians(7)))
-    list_kago.insert(8, msg.ranges[(359*2)]*math.cos(math.radians(1)))
-    list_kago.insert(9, msg.ranges[(358*2)]*math.cos(math.radians(2)))
-    list_kago.insert(10, msg.ranges[(357*2)]*math.cos(math.radians(3)))
-    list_kago.insert(11, msg.ranges[(356*2)]*math.cos(math.radians(4)))
-    list_kago.insert(12, msg.ranges[(355*2)]*math.cos(math.radians(5)))
-    list_kago.insert(13, msg.ranges[(354*2)]*math.cos(math.radians(6)))
-    list_kago.insert(14, msg.ranges[(353*2)]*math.cos(math.radians(7)))
+    # list_kago.insert(0, msg.ranges[(0)])
+    # list_kago.insert(1, msg.ranges[(1*2)]*math.cos(math.radians(1)))
+    # list_kago.insert(2, msg.ranges[(2*2)]*math.cos(math.radians(2)))
+    # list_kago.insert(3, msg.ranges[(3*2)]*math.cos(math.radians(3)))
+    # list_kago.insert(4, msg.ranges[(4*2)]*math.cos(math.radians(4)))
+    # list_kago.insert(5, msg.ranges[(5*2)]*math.cos(math.radians(5)))
+    # list_kago.insert(6, msg.ranges[(6*2)]*math.cos(math.radians(6)))
+    # list_kago.insert(7, msg.ranges[(7*2)]*math.cos(math.radians(7)))
+    # list_kago.insert(8, msg.ranges[(359*2)]*math.cos(math.radians(1)))
+    # list_kago.insert(9, msg.ranges[(358*2)]*math.cos(math.radians(2)))
+    # list_kago.insert(10, msg.ranges[(357*2)]*math.cos(math.radians(3)))
+    # list_kago.insert(11, msg.ranges[(356*2)]*math.cos(math.radians(4)))
+    # list_kago.insert(12, msg.ranges[(355*2)]*math.cos(math.radians(5)))
+    # list_kago.insert(13, msg.ranges[(354*2)]*math.cos(math.radians(6)))
+    # list_kago.insert(14, msg.ranges[(353*2)]*math.cos(math.radians(7)))
 
-    for item in list_kago:
-        if item==0:
-            item = 1000
-    if max(list_kago)<1000:
-        range_kago=max(list_kago)
+    # for item in list_kago:
+    #     if item==0:
+    #         item = 1000
+    # if max(list_kago)<1000:
+    #     range_kago=max(list_kago)
 
     print(range_ahead)
     print(range_back)
@@ -156,8 +156,8 @@ def scan_callback(msg):
         pub4.publish(range_back)
     if range_front>0:
         pub5.publish(range_front)
-    if range_kago>0:
-        pub6.publish(range_kago)
+    # if range_kago>0:
+    #     pub6.publish(range_kago)
 
 
 pub1 = rospy.Publisher('range_right', Float32, queue_size=10)
@@ -165,7 +165,7 @@ pub2 = rospy.Publisher('range_ahead', Float32, queue_size=10)
 pub3 = rospy.Publisher('range_left', Float32, queue_size=10)
 pub4 = rospy.Publisher('range_back', Float32, queue_size=10)
 pub5 = rospy.Publisher('range_front', Float32, queue_size=10)
-pub6 = rospy.Publisher('range_kago', Float32, queue_size=10)
+# pub6 = rospy.Publisher('range_kago', Float32, queue_size=10)
 rospy.init_node('range_ahead')
 
 scan_sub = rospy.Subscriber('scan', LaserScan, scan_callback)
