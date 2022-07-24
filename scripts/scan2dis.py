@@ -7,8 +7,10 @@ from std_msgs.msg import Float32
 
 def scan_callback(msg):
     #len(msg.ranges) is 720
-    range_left = msg.ranges[270*2]
-    range_right = msg.ranges[90*2]
+    if msg.ranges[270*2]>0:
+        range_left = msg.ranges[270*2]
+    if msg.ranges[90*2]>0:
+        range_right = msg.ranges[90*2]
 
     range_back1 = msg.ranges[(210*2)]
     range_back2 = msg.ranges[(150*2)]
@@ -88,8 +90,10 @@ def scan_callback(msg):
     if range_back6 != 0:
 	count_back=count_back+1     
 
-    range_back=(range_back1+range_back2+range_back3+range_back4+range_back5+range_back6)/count_back
-    range_ahead=(range_ahead1+range_ahead2+range_ahead3+range_ahead4+range_ahead5+range_ahead6+range_ahead7+range_ahead8)/count
+    if count_back!=0:
+        range_back=(range_back1+range_back2+range_back3+range_back4+range_back5+range_back6)/count_back
+    if count!=0:
+        range_ahead=(range_ahead1+range_ahead2+range_ahead3+range_ahead4+range_ahead5+range_ahead6+range_ahead7+range_ahead8)/count
 			
     front_cou=0
     if range_front1>0:
@@ -106,8 +110,8 @@ def scan_callback(msg):
         front_cou=front_cou+1
     if range_front7>0:
         front_cou=front_cou+1
-    
-    range_front = (range_front1 + range_front2 + range_front3 + range_front4 + range_front5 + range_front6 + range_front7)/front_cou
+    if front_cou!=0:
+        range_front = (range_front1 + range_front2 + range_front3 + range_front4 + range_front5 + range_front6 + range_front7)/front_cou
 
     print(range_ahead)
     print(range_back)
