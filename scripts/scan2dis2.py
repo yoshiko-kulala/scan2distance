@@ -65,11 +65,14 @@ def scan_callback(msg):
 
     front_cou=0
     front_ave=0
+    front_min=1300.0
+
 
     for item in range_front_list:
-        if item<1200 or item<0:
+        if item<1200 or item>0:
             front_cou=front_cou+1
             front_ave=front_ave+item
+
     front_ave=front_ave/front_cou
 
     range_right_list=[]
@@ -130,7 +133,7 @@ def scan_callback(msg):
     right_ave=0
 
     for item in range_right_list:
-        if item<1200 or item<0:
+        if item<1200 or item>0:
             right_cou=right_cou+1
             right_ave=right_ave+item
     right_ave=right_ave/right_cou
@@ -193,7 +196,7 @@ def scan_callback(msg):
     left_ave=0
 
     for item in range_left_list:
-        if item<1200 or item<0:
+        if item<1200 or item>0:
             left_cou=left_cou+1
             left_ave=left_ave+item
     left_ave=left_ave/left_cou
@@ -277,8 +280,14 @@ def scan_callback(msg):
     #if front_cou!=0:
     #    range_front = (range_front1 + range_front2 + range_front3 + range_front4 + range_front5 + range_front6 + range_front7)/front_cou
 
-    print(range_ahead)
-    print(range_back)
+
+    print "front:",
+    print(front_ave)
+    print "left:",
+    print(left_ave)
+    print "right:",
+    print(right_ave)
+    print("")
 
     if right_ave>0:
         pub1.publish(right_ave)
